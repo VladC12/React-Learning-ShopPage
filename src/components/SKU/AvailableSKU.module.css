@@ -1,0 +1,19 @@
+.SKU {
+  max-width: 60rem;
+  width: 90%;
+  margin: 2rem auto;
+  animation: SKU-appear 1s ease-out forwards;
+}
+
+.SKU ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes SKU-appear {
+  from {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+}
