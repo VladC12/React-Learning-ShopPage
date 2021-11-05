@@ -1,8 +1,21 @@
+import { useContext } from "react";
+
 import classes from "./SKUItem.module.css";
 import SKUItemForm from "./SKUItemForm";
+import CartContext from "../../../store/cart-context";
 
 const SKUItem = (props) => {
-const price = `$${props.price.toFixed(2)}`; // `` used for literal, the first dollar sign is just that a $ and the ${} outputs the price and .toFixed(2) is to ensure 2 decimals
+  const cartCtx = useContext(CartContext);
+  const price = `$${props.price.toFixed(2)}`; // `` used for literal, the first dollar sign is just that a $ and the ${} outputs the price and .toFixed(2) is to ensure 2 decimals
+
+  const addToCartHandler = (amount) => {
+    cartCtx.addItem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price,
+    });
+  };
 
   return (
     <li className={classes.SKU}>
@@ -12,7 +25,7 @@ const price = `$${props.price.toFixed(2)}`; // `` used for literal, the first do
         <div className={classes.price}>{price}</div>
       </div>
       <div>
-          <SKUItemForm />
+        <SKUItemForm onAddToCart={addToCartHandler} />
       </div>
     </li>
   );
